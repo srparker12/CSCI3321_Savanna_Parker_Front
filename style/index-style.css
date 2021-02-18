@@ -1,0 +1,36 @@
+.nav {
+    background-color: burlywood;
+    list-style-type: none;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    font-family: Arial;
+}
+.nav li {
+    display: inline-block;
+    font-size: 30px;
+    padding: 20 px;
+}
+img.nav {width: 150px;
+    height: 150px;
+
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: burlywood;
+    padding: 30px;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    text-align: center;
+    font-family: Arial;
+  }
+  img.grid-item{
+      border: 3px solid gray;
+      padding: 5px;
+      width: "175px";
+      height:"210px";
+  }
