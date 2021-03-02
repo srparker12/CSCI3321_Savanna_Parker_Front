@@ -1,10 +1,38 @@
-div {
+#squares-container{
+    border: 3px black solid;
+    height: 475px;
     width: 800px;
-    height: 450px;
-    background-color: burlywood;
-    transition: all 4s;
-    border: 2px solid black;
+    text-align: center;
+    margin: auto;
+    padding: 5px;
 }
-div:hover {
-    transform: translate(200px) scale(.75) rotate(1080deg);
+
+.even {
+    border: 1px black solid;
+    width: 50px;
+    height: 50px;
+    margin: 5px auto;
+    background-color: cornflowerblue;
+    color: burlywood;
+    line-height: 50px;
+    transition: all 6s;
+}
+
+.odd {
+    border: 1px black solid;
+    width: 50px;
+    height: 50px;
+    margin: 5px auto;
+    background-color: burlywood;
+    color: cornflowerblue;
+    line-height: 50px;
+    transition: all 6s;
+}
+
+#squares-container:hover .even{
+    transform: translateX(-250px) scale(2) rotate(1080deg);
+}
+
+#squares-container:hover .odd{
+    transform: translateX(250px) scale(.75) rotate(-1080deg);
 }
