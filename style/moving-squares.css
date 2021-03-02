@@ -1,10 +1,11 @@
 #squares-container{
     border: 3px black solid;
-    height: 475px;
+    height: 465px;
     width: 800px;
     text-align: center;
     margin: auto;
     padding: 5px;
+    /*border-radius: 25px;*/
 }
 
 .even {
@@ -30,9 +31,14 @@
 }
 
 #squares-container:hover .even{
-    transform: translateX(-250px) scale(2) rotate(1080deg);
+    transform: translateX(-340px) scale(2) rotate(1080deg);
 }
 
 #squares-container:hover .odd{
-    transform: translateX(250px) scale(.75) rotate(-1080deg);
+    transform: translateX(375px) scale(.75) rotate(-1080deg);
+}
+#squares-container:hover{
+    transition: all 6s;
+    border-radius: 25px;
+    height: 500px;
 }
