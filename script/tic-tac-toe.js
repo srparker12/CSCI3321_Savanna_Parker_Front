@@ -1,58 +1,80 @@
+var updateGameStatus = document.querySelector('.gameStatus');
+
 var gameOver = false;
 var currentPlayer = 'X';
-var totalMoves = 0;
-function placeMarker(spotId){
-    if (!gameOver){
-    //get the spotId
-    var spot = document.getElementById(spotId);
-    //if the spot is empty then change spot.innerHTML to mark the spot
-    //  if (currentPlayerWon()){
-    //    updateGameStatus();
-    // }
-    // else{
-        //totalMoves++;
-        //switch the player
-    //}
-    //else, do nothing
-    }
+var boardState= ["","","","","","","","",""];
+
+
+var winMsg = () => 'Player ${currentPlayer} WON!';
+var tieMsg= () => 'Tie game';
+var playerTurn = () => "It's ${currentPlayer}'s turn";
+
+updateGameStatus.innerHTML = playerTurn();
+
+var winCondition = [
+    [1,2,3]
+    [4,5,6]
+    [7,8,9]
+    [1,4,7]
+    [2,5,8]
+    [3,6,9]
+    [1,5,9]
+    [3,5,7]
+];
+
+
+function placeMarker(cellClicked, cellIndex){
+    boardState[cellIndex] = currentPlayer;
+    cellClicked.innerHTML = currentPlayer;
+}
+
+function playerSwitch(){
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    updateGameStatus.innerHTML = playerTurn();
 }
 
 function currentPlayerWon(){
-    //8 getElementById to check each solution
-    var s1 = document.getElementById('1');
-    var s2 = document.getElementById('2');
-    var s3 = document.getElementById('3');
-    var s4 = document.getElementById('4');
-    var s5 = document.getElementById('5');
-    var s6 = document.getElementById('6');
-    var s7 = document.getElementById('7');
-    var s8 = document.getElementById('8');
-    var s9 = document.getElementById('9');
+    var result = false;
+    for (let i=0;i<=7; i++){
+        var winner = winCondition[i];
+        var a = boardState[winner[0]];
+        var b = boardState[winner[1]];
+        var c = boardState[winner[2]];
+        if (a === '' || b === '' || c === ''){
+            continue;
+        }
+        if (a === b && b === c) {
+            result = true;
+            break;
+        }
+    }
+    if (result) {
+        updateGameStatus.innerHTML = winMsg();
+        gameOver = true;
+        return;
+    }
 
-    //if s1.innerHTML === &&& s2.innerHTML === s3.innterHTML <=first row
-    // || (second row) || (third row) ......
-    // || (s3.innerHTML === s5.innnerHTML && s7.innerHTML)
-    //  gameOver =true;
-    //}
-    //else{ gameOver=false;}
+    var tie = !boardState.includes("");
+    if (tie) {
+        updateGameStatus.innerHTML = tieMsg();
+        gameOver = true;
+        return;
+    }
 
-    //if (!gameOver){
-        //we need to check if it is a tie
-        //check the counter: totalMoves
-        //if it is a tie, gameOver= true;
-        //
-    //}
-    return gameOver;
+    playerSwitch();
 }
 
-function updateGameStatus(){
-    var statusBoard = document.getElementById('status');
-    //if (gameOver){
-    // some message
-    //}
-    //else{
-    // if not a tie, prompt user to make a move
-    // else, display the message
-    //}
+function spotClaim(clickedSpot){
+    var cellClicked = clickedSpot.target;
+    var cellIndex = parseInt(cellClicked.getAttribute('square-index'));
+
+    if (boardState[cellIndex] !== "" || gameOver) {
+        return;
+    }
+
+    placeMarker(cellClicked, cellIndex);
+    currentPlayerWon();
 }
+
+
 
